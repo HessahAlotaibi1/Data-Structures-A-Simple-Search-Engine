@@ -1,4 +1,7 @@
-package com.DS;
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */package com.DS;
 
 class Node<T> {
     public T data;
@@ -13,7 +16,7 @@ class Node<T> {
 public class LinkedList<T> implements List<T> {
     private Node<T> head;
     private Node<T> current;
-
+int n= 0 ;
     public LinkedList() {
         head = current = null;
     }
@@ -62,6 +65,7 @@ public class LinkedList<T> implements List<T> {
 
     @Override
     public void insert(T val) {
+        n++;
         Node<T> newNode = new Node<>(val);
         if (empty()) {
             head = current = newNode; // If list is empty, set head and current to new node
@@ -75,47 +79,69 @@ public class LinkedList<T> implements List<T> {
 
     @Override
     public void remove() {
-        if (head == null) {
-            return; // List is empty, nothing to remove
-        }
-        
-        if (current == head) {
+       // if (head == null) {
+      //      return; // List is empty, nothing to remove}
+      //  if (current == head) {
+      //      head = head.next; // If removing head, move head to next node
+      //  } else {
+      //      Node<T> tmp = head;
+      //      while (tmp != null && tmp.next != current) {
+      //          tmp = tmp.next;
+      //      }
+      //      if (tmp != null) {
+      //          tmp.next = current.next; // Skip the current node
+      //      }
+      //  }
+
+      //  if (current != null) {
+    //        current = (current.next == null) ? head : current.next;
+    //} }
+  if (current == head) {
             head = head.next; // If removing head, move head to next node
         } else {
             Node<T> tmp = head;
-            while (tmp != null && tmp.next != current) {
+            while ( tmp.next != current) 
                 tmp = tmp.next;
-            }
-            if (tmp != null) {
                 tmp.next = current.next; // Skip the current node
             }
-        }
 
-        if (current != null) {
-            current = (current.next == null) ? head : current.next;
+        if (current.next == null) 
+            current =head;
+        else 
+            current= current.next;
         }
-    }
-
     @Override
     public void display() {
-        if (head == null) {
+        if (this == null) 
+            System.out.println("null List");
+            if (head==null)
             System.out.println("empty List");
-            return;
-        }
 
         Node<T> p = head;
         while (p != null) {
             System.out.print(p.data + " ");
             p = p.next;
         }
-        System.out.println(); // To print a newline after the list
+       // System.out.println(); // To print a newline after the list
     }
-
+    public boolean exist(T w) {
+    Node<T> p = head;
+      while (p != null) {
+           if (p.data.equals(w))
+               return true;  
+            p = p.next;
+    }
+    return false;
+    }
+    //for test
     public static void main(String[] args) {
         List<String> L = new LinkedList<>();
         L.insert("aa");
         L.insert("b");
         L.insert("c");
+        L.remove();
         L.display();
     }
+
+    
 }

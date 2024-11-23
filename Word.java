@@ -11,11 +11,11 @@ public Word (String w){
     doc_IDS=new LinkedList<Integer>();
 }
 public void add_id(int id){
-    if (!existsIn_doc_IDS(id))
+    if (!searchID(id))
         doc_IDS.insert(id);
 }
 
-    private boolean existsIn_doc_IDS(Integer id) { //search
+    private boolean searchID(Integer id) { //search// we can used exist in linked list
        if (doc_IDS.empty())
         return false;
        doc_IDS.findFirst();
@@ -25,11 +25,18 @@ public void add_id(int id){
            }
            doc_IDS.findNext();
        }
-       if (doc_IDS.retrieve().equals(id)){
+       if(doc_IDS.retrieve().equals(id)){
            return  true;
        }
        return false;
        }
-
+ public void display(){
+            System.out.println("\n -----------------------------------");
+            System.out.print("Word:"+text);
+            System.out.print("\n Document IDs: ");
+            System.out.print("[");
+            doc_IDS.display();
+            System.out.println("]");
+       }
 
 }
